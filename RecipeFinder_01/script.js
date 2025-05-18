@@ -188,16 +188,7 @@ async function handleMealClick(e) {
     errorContainer.classList.remove("hidden");
   }
 }
-// Save meal to favorites
-// This function saves a meal to the favorites list in local storage
-// It checks if the meal is already in the favorites list before adding it
-// If the meal is already in the favorites list, it shows an alert
-// If the meal is successfully saved, it shows a success alert
-// It uses the meal's idMeal as a unique identifier to check for duplicates
-// It also uses the meal's strMeal and strMealThumb properties to display the meal name and image in the favorites list
-// It uses the meal's strCategory property to display the meal category in the favorites list
-// It uses the meal's strInstructions property to display the meal instructions in the favorites list
-// It uses the meal's strYoutube property to display the meal video link in the favorites list
+
 function saveToFavorites(meal) {
   let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
   const exists = favorites.some((fav) => fav.idMeal === meal.idMeal);
