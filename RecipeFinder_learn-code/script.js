@@ -62,7 +62,6 @@ async function searchMeals() {
 function displayMeals(meals) {
   mealsContainer.innerHTML = "";
 
-  // loop through meals and create a card for each meal
   meals.forEach((meal) => {
     mealsContainer.innerHTML += `
       <div class="meal" data-meal-id="${meal.idMeal}">
@@ -70,11 +69,23 @@ function displayMeals(meals) {
         <div class="meal-info">
           <h3 class="meal-title">${meal.strMeal}</h3>
           ${meal.strCategory ? `<div class="meal-category">${meal.strCategory}</div>` : ""}
+          <button class="bookmark-btn" data-meal='${JSON.stringify(meal)}'>
+            <i class="fas fa-star"></i> Save
+          </button>
         </div>
       </div>
     `;
   });
+
+  document.querySelectorAll(".bookmark-btn").forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation(); // biar gak memicu klik ke detail
+      const meal = JSON.parse(this.dataset.meal);
+      saveToFavorites(meal);
+    });
+  });
 }
+
 
 async function handleMealClick(e) {
   const mealEl = e.target.closest(".meal");
@@ -100,7 +111,7 @@ async function handleMealClick(e) {
         }
       }
 
-      // display meal details
+      // Build meal details content
       mealDetailsContent.innerHTML = `
            <img src="${meal.strMealThumb}" alt="${meal.strMeal}" class="meal-details-img">
            <h2 class="meal-details-title">${meal.strMeal}</h2>
@@ -134,11 +145,59 @@ async function handleMealClick(e) {
            }
          `;
 
+      // Check if meal is already in favorites
+      let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+      const isFavorite = favorites.some(fav => fav.idMeal === meal.idMeal);
+
+      // Append the favorite toggle button
+      mealDetailsContent.innerHTML += `
+        <button id="favorite-btn" class="favorite-btn">
+          <i class="fas ${isFavorite ? "fa-star" : "fa-star-half-alt"}"></i> ${isFavorite ? "Unsave" : "Save"}
+        </button>
+      `;
+
+      // Add event listener to favorite button
+      const favoriteBtn = document.getElementById("favorite-btn");
+      favoriteBtn.addEventListener("click", () => {
+        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        const alreadyFavorite = favorites.some(fav => fav.idMeal === meal.idMeal);
+
+        if (alreadyFavorite) {
+          // Remove from favorites
+          favorites = favorites.filter(fav => fav.idMeal !== meal.idMeal);
+          favoriteBtn.innerHTML = `<i class="fas fa-star-half-alt"></i> Save`;
+        } else {
+          // Add to favorites
+          favorites.push({
+            idMeal: meal.idMeal,
+            strMeal: meal.strMeal,
+            strMealThumb: meal.strMealThumb,
+            strCategory: meal.strCategory,
+          });
+          favoriteBtn.innerHTML = `<i class="fas fa-star"></i> Unsave`;
+        }
+
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+      });
+
       mealDetails.classList.remove("hidden");
       mealDetails.scrollIntoView({ behavior: "smooth" });
     }
   } catch (error) {
     errorContainer.textContent = "Could not load recipe details. Please try again later.";
     errorContainer.classList.remove("hidden");
+  }
+}
+
+function saveToFavorites(meal) {
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  const exists = favorites.some((fav) => fav.idMeal === meal.idMeal);
+
+  if (!exists) {
+    favorites.push(meal);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    alert(`"${meal.strMeal}" has been saved to favorites!`);
+  } else {
+    alert(`"${meal.strMeal}" is already in your favorites.`);
   }
 }
