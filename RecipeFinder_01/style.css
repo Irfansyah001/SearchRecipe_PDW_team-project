@@ -276,25 +276,153 @@ button:hover {
   display: none;
 }
 
-@media (max-width: 600px) {
-  .search-container {
-    flex-direction: column;
-  }
 
-  button#search-btn {
-    width: 100%;
-    padding: 10px;
-  }
+/* Sidebar Styling */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background-color: var(--primary);
+  color: white;
+  padding: 2rem 1rem;
+  box-shadow: var(--shadow);
+  z-index: 999;
+}
 
-  .meals-container {
-    grid-template-columns: 1fr;
-  }
+.sidebar h2 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: white;
+}
 
-  .meal-details-img {
-    max-width: 100%;
-  }
+.sidebar ul {
+  list-style: none;
+}
 
-  .ingredients-list {
-    grid-template-columns: 1fr;
-  }
+.sidebar ul li {
+  margin: 1rem 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* Push main content to the right */
+.main-content {
+  margin-left: 220px;
+  padding: 2rem 1rem;
+}
+
+.bookmark-btn {
+  background-color: #ffcc00;
+  border: none;
+  color: #000;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 8px;
+  font-size: 0.9rem;
+}
+
+.bookmark-btn:hover {
+  background-color: #ffdb4d;
+}
+.bookmark-btn i {
+  margin-right: 5px;
+}
+.bookmark-btn:focus {
+  outline: none;
+}
+.bookmark-btn:active {
+  transform: scale(0.98);
+}
+.bookmark-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.bookmark-btn:disabled:hover {
+  background-color: #ccc;
+}
+.bookmark-btn:disabled:active {
+  transform: none;
+}
+.bookmark-btn:disabled:focus {
+  outline: none;
+}
+.bookmark-btn:disabled i {
+  color: #999;
+}
+.bookmark-btn i.active {
+  color: #ffcc00;
+}
+.bookmark-btn i.inactive {
+  color: #999;
+}
+.bookmark-btn i:hover {
+  color: #ffdb4d;
+}
+.bookmark-btn i:active {
+  transform: scale(0.98);
+}
+.bookmark-btn i:focus {
+  outline: none;
+}
+.bookmark-btn i:disabled {
+  color: #ccc;
+}
+.bookmark-btn i:disabled:hover {
+  color: #ccc;
+}
+.bookmark-btn i:disabled:active {
+  transform: none;
+}
+.bookmark-btn i:disabled:focus {
+  outline: none;
+}
+.bookmark-btn i:disabled.active {
+  color: #ffcc00;
+}
+.bookmark-btn i:disabled.inactive {
+  color: #999;
+}
+.bookmark-btn i:disabled:hover {
+  color: #ccc;
+}
+.bookmark-btn i:disabled:active {
+  transform: none;
+} 
+
+.favorite-btn {
+  margin-top: 1rem;
+  background-color: #ffcc00;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.favorite-btn i {
+  color: #fff;
+}
+
+.meal-details-content {
+  overflow-y: auto;
+  max-height: 90vh; /* or remove height limit */
+  padding-bottom: 2rem;
 }
