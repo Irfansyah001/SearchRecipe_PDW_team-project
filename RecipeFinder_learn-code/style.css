@@ -1,428 +1,488 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0;             /* Menghapus jarak luar default dari semua elemen HTML */
+  padding: 0;            /* Menghapus jarak dalam default dari semua elemen */
+  box-sizing: border-box;/* Mengatur supaya padding dan border tidak menambah ukuran elemen (lebih mudah diatur) */
 }
+
 
 /* Color Palette */
 :root {
-  --primary: #ff7e5f;
-  --primary-dark: #eb5e41;
-  --primary-light: #ffb199;
-  --secondary: #0ba360;
-  --text-dark: #333333;
-  --text-light: #f8f9fa;
-  --background: #ffffff;
-  --background-light: #f8f9fa;
-  --card-bg: #ffffff;
-  --border-radius: 8px;
-  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --transition: all 0.3s ease;
+  --primary: #ff7e5f;             /* Warna utama (orange pink), dipakai di tombol, teks utama */
+  --primary-dark: #eb5e41;        /* Versi lebih gelap dari warna utama (untuk hover) */
+  --primary-light: #ffb199;       /* Versi terang dari warna utama (biasanya untuk background badge) */
+  --secondary: #0ba360;           /* Warna sekunder (hijau), dipakai di ikon atau elemen aksen */
+  --text-dark: #333333;           /* Warna teks utama (abu tua) */
+  --text-light: #f8f9fa;          /* Warna teks terang, digunakan di latar gelap */
+  --background: #ffffff;          /* Warna latar belakang putih */
+  --background-light: #f8f9fa;    /* Warna latar alternatif yang sedikit lebih terang */
+  --card-bg: #ffffff;             /* Warna latar belakang kartu resep */
+  --border-radius: 8px;           /* Radius untuk membuat sudut elemen jadi melengkung */
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bayangan lembut di elemen */
+  --transition: all 0.3s ease;    /* Efek transisi untuk animasi halus di elemen interaktif */
 }
+
 
 body {
-  font-family: sans-serif;
-  background-color: var(--background-light);
-  color: var(--text-dark);
-  line-height: 1.6;
+  font-family: sans-serif;              /* Mengatur jenis font tulisan ke sans-serif agar lebih modern dan bersih */
+  background-color: var(--background-light); /* Latar belakang halaman pakai warna terang */
+  color: var(--text-dark);              /* Warna teks utama hitam/abu tua */
+  line-height: 1.6;                     /* Jarak antar baris teks agar lebih mudah dibaca */
 }
+
 
 .container {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+  width: 100%;                          /* Lebar maksimal 100% layar */
+  max-width: 1000px;                    /* Batas lebar maksimal konten agar tidak terlalu lebar di layar besar */
+  margin: 0 auto;                       /* Tengah-tengah secara horizontal */
+  padding: 2rem 1rem;                   /* Spasi bagian dalam atas-bawah 2rem, kiri-kanan 1rem */
 }
+
 
 header {
-  text-align: center;
-  margin-bottom: 2rem;
+  text-align: center;                   /* Menengahkan semua teks di dalam header */
+  margin-bottom: 2rem;                  /* Spasi bawah agar tidak menempel dengan elemen berikutnya */
 }
+
 
 h1 {
-  font-size: 2.2rem;
-  color: var(--primary);
-  margin-bottom: 0.5rem;
+  font-size: 2.2rem;                    /* Ukuran huruf besar untuk judul utama */
+  color: var(--primary);                /* Warna judul menggunakan warna utama */
+  margin-bottom: 0.5rem;                /* Jarak bawah antara h1 dan teks di bawahnya */
 }
+
 
 h1 i {
-  margin-right: 10px;
+  margin-right: 10px;                   /* Jarak kanan ikon dari teks judul */
 }
+
 
 header p {
-  color: var(--text-dark);
-  opacity: 0.7;
+  color: var(--text-dark);              /* Warna teks paragraf */
+  opacity: 0.7;                         /* Membuat warna teks jadi sedikit transparan (abu muda) */
 }
+
 
 .search-container {
-  display: flex;
-  margin-bottom: 2rem;
-  gap: 10px;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
+  display: flex;            /* Menyusun elemen di dalamnya secara horizontal (satu baris) */
+  margin-bottom: 2rem;      /* Memberi jarak bawah sebesar 2 rem */
+  gap: 10px;                /* Jarak antar elemen di dalam flex (input dan tombol) */
+  max-width: 500px;         /* Lebar maksimum container agar tidak terlalu besar */
+  margin-left: auto;        /* Mendorong container ke kanan */
+  margin-right: auto;       /* Mendorong container ke kiri → hasilnya: container berada di tengah */
 }
+
 
 input[type="text"] {
-  flex: 1;
-  padding: 10px 16px;
-  font-size: 1rem;
-  border-radius: var(--border-radius);
-  border: 1px solid #ddd;
-  background-color: var(--background);
-  color: var(--text-dark);
-  outline: none;
+  flex: 1;                                /* Input mengambil sisa ruang yang tersedia di dalam flex container */
+  padding: 10px 16px;                     /* Ruang dalam: atas-bawah 10px, kiri-kanan 16px */
+  font-size: 1rem;                        /* Ukuran huruf normal */
+  border-radius: var(--border-radius);   /* Sudut input dibulatkan */
+  border: 1px solid #ddd;                /* Garis abu terang */
+  background-color: var(--background);   /* Latar belakang input (putih) */
+  color: var(--text-dark);               /* Warna teks di input (abu tua) */
+  outline: none;                         /* Hilangkan garis fokus default dari browser */
 }
+
 
 input[type="text"]:focus {
-  border-color: var(--primary);
+  border-color: var(--primary);          /* Saat difokuskan, garis tepi berubah jadi warna utama */
 }
+
 
 button {
-  background-color: var(--primary);
-  color: white;
-  border: none;
-  border-radius: var(--border-radius);
-  padding: 0 20px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
+  background-color: var(--primary);      /* Warna latar tombol (warna utama) */
+  color: white;                          /* Warna teks tombol putih */
+  border: none;                          /* Hilangkan garis tepi */
+  border-radius: var(--border-radius);   /* Sudut tombol dibulatkan */
+  padding: 0 20px;                       /* Padding kiri-kanan 20px, atas-bawah otomatis dari tinggi font */
+  font-size: 1rem;                       /* Ukuran teks 1rem (normal) */
+  font-weight: 600;                      /* Tebal huruf sedang */
+  cursor: pointer;                       /* Ubah kursor menjadi tangan saat diarahkan */
+  transition: var(--transition);         /* Efek animasi halus saat hover (dari root variable) */
 }
+
 
 button:hover {
-  background-color: var(--primary-dark);
+  background-color: var(--primary-dark); /* Saat diarahkan, warna berubah menjadi lebih gelap */
 }
+
 
 #result-heading {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 1.2rem;
-  color: var(--text-dark);
+  text-align: center;              /* Menengahkan teks judul hasil pencarian */
+  margin-bottom: 1.5rem;           /* Jarak bawah agar tidak terlalu rapat dengan konten di bawahnya */
+  font-size: 1.2rem;               /* Ukuran teks sedikit lebih besar dari normal */
+  color: var(--text-dark);         /* Warna teks gelap (abu tua) agar mudah dibaca */
 }
+
 
 .meals-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.5rem;
+  display: grid;                                 /* Gunakan CSS Grid untuk menyusun resep dalam kotak */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+  /* Buat kolom sebanyak mungkin, masing-masing minimal 250px dan fleksibel hingga memenuhi ruang */
+  gap: 1.5rem;                                    /* Jarak antar kotak resep */
 }
+
 
 .meal {
-  background-color: var(--card-bg);
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  transition: var(--transition);
-  cursor: pointer;
-  position: relative;
+  background-color: var(--card-bg);              /* Warna latar belakang kotak resep (putih) */
+  border-radius: var(--border-radius);           /* Membulatkan sudut kotak */
+  box-shadow: var(--shadow);                     /* Memberikan bayangan agar tampak melayang */
+  overflow: hidden;                              /* Menyembunyikan bagian yang keluar dari batas */
+  transition: var(--transition);                 /* Animasi transisi halus untuk hover */
+  cursor: pointer;                               /* Ubah kursor menjadi tangan saat diarahkan */
+  position: relative;                            /* Menjadikan posisi relatif untuk elemen internal */
 }
+
 
 .meal:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);                   /* Geser elemen ke atas sedikit saat diarahkan */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);      /* Bayangan lebih besar untuk efek 'melayang' */
 }
+
 
 .meal img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
+  width: 100%;                                   /* Gambar memenuhi lebar penuh dari kotaknya */
+  height: 180px;                                 /* Tinggi gambar tetap 180px */
+  object-fit: cover;                             /* Gambar dipotong agar tetap proporsional dan tidak merusak ukuran */
 }
 
+
 .meal-info {
-  padding: 1rem;
+  padding: 1rem;                                 /* Spasi dalam untuk konten teks resep */
 }
 
 .meal-title {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-  color: var(--text-dark);
+  font-size: 1.1rem;                             /* Ukuran teks nama resep */
+  margin-bottom: 0.5rem;                         /* Jarak bawah dari teks nama */
+  color: var(--text-dark);                       /* Warna teks gelap */
 }
+
 
 .meal-category {
-  display: inline-block;
-  background-color: var(--primary-light);
-  color: var(--text-dark);
-  padding: 3px 8px;
-  font-size: 0.8rem;
-  border-radius: 20px;
-  margin-bottom: 10px;
+  display: inline-block;                         /* Menjadikan elemen hanya selebar isinya */
+  background-color: var(--primary-light);        /* Latar kategori dengan warna terang */
+  color: var(--text-dark);                       /* Warna teks kategori */
+  padding: 3px 8px;                              /* Spasi dalam agar tampak seperti badge */
+  font-size: 0.8rem;                             /* Ukuran font kecil */
+  border-radius: 20px;                           /* Membuat badge jadi bentuk lonjong */
+  margin-bottom: 10px;                           /* Jarak bawah dari kategori */
 }
+
 
 #meal-details {
-  background-color: var(--background);
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
-  padding: 1.5rem;
-  margin: 2rem 0;
+  background-color: var(--background);           /* Latar putih */
+  border-radius: var(--border-radius);           /* Sudut membulat */
+  box-shadow: var(--shadow);                     /* Bayangan untuk efek kedalaman */
+  padding: 1.5rem;                               /* Spasi dalam di semua sisi */
+  margin: 2rem 0;                                /* Jarak atas dan bawah dari elemen lain */
 }
+
 
 #back-btn {
-  margin-bottom: 1.5rem;
-  background-color: transparent;
-  color: var(--primary);
-  border: 1px solid var(--primary);
-  padding: 8px 16px;
+  margin-bottom: 1.5rem;                         /* Jarak bawah dari konten di bawahnya */
+  background-color: transparent;                 /* Tombol transparan (tidak berwarna latar) */
+  color: var(--primary);                         /* Warna teks utama */
+  border: 1px solid var(--primary);              /* Garis tepi dengan warna utama */
+  padding: 8px 16px;                             /* Spasi dalam tombol */
 }
+
 
 #back-btn:hover {
-  background-color: var(--primary);
-  color: white;
+  background-color: var(--primary);              /* Latar berubah menjadi warna utama */
+  color: white;                                  /* Teks menjadi putih */
 }
+
 
 .meal-details-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: flex;                                 /* Gunakan flexbox */
+  flex-direction: column;                        /* Susun elemen secara vertikal */
+  align-items: center;                           /* Tengahkan semua elemen secara horizontal */
 }
+
 
 .meal-details-img {
-  width: 100%;
-  max-width: 400px;
-  border-radius: var(--border-radius);
-  margin-bottom: 1.5rem;
+  width: 100%;                                   /* Gambar memenuhi lebar kontainer */
+  max-width: 400px;                              /* Batas maksimal agar tidak terlalu besar */
+  border-radius: var(--border-radius);           /* Sudut gambar membulat */
+  margin-bottom: 1.5rem;                         /* Jarak bawah sebelum elemen berikutnya */
 }
+
 
 .meal-details-title {
-  font-size: 1.8rem;
-  color: var(--primary);
-  margin-bottom: 0.5rem;
-  text-align: center;
+  font-size: 1.8rem;                             /* Ukuran font besar untuk nama resep */
+  color: var(--primary);                         /* Warna utama */
+  margin-bottom: 0.5rem;                         /* Jarak bawah */
+  text-align: center;                            /* Tengahkan teks */
 }
+
 
 .meal-details-category {
-  margin-bottom: 1rem;
-  text-align: center;
+  margin-bottom: 1rem;         /* Jarak bawah setelah kategori */
+  text-align: center;          /* Tengahkan isi kategori (teks di dalam span) */
 }
+
 
 .meal-details-category span {
-  background-color: var(--primary-light);
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.9rem;
+  background-color: var(--primary-light);  /* Warna latar badge kategori */
+  padding: 4px 12px;                       /* Spasi dalam: atas-bawah 4px, kiri-kanan 12px */
+  border-radius: 20px;                     /* Membuat bentuk lonjong (badge) */
+  font-size: 0.9rem;                       /* Ukuran teks badge */
 }
+
 
 .meal-details-instructions {
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
+  line-height: 1.7;         /* Jarak antar baris teks agar mudah dibaca */
+  margin-bottom: 1.5rem;    /* Jarak bawah sebelum elemen berikutnya */
 }
+
 
 .meal-details-instructions h3 {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;    /* Jarak bawah judul "Instructions" dari paragraf */
 }
+
 
 .ingredients-list {
-  list-style-type: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 8px;
-  margin-bottom: 1.5rem;
-  width: 100%;
+  list-style-type: none;                           /* Hilangkan bullet/list bawaan */
+  display: grid;                                   /* Susun bahan dalam bentuk grid */
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+  /* Buat kolom fleksibel, minimal 180px, maksimal menyesuaikan */
+  gap: 8px;                                        /* Jarak antar bahan */
+  margin-bottom: 1.5rem;                           /* Jarak bawah dari elemen berikutnya */
+  width: 100%;                                     /* Lebar penuh dari kontainer */
 }
+
 
 .ingredients-list li {
-  display: flex;
-  align-items: center;
-  padding: 6px 10px;
-  background-color: var(--background-light);
-  border-radius: var(--border-radius);
-  font-size: 0.9rem;
+  display: flex;                                   /* Susun isi dalam satu baris (ikon dan teks) */
+  align-items: center;                             /* Posisikan vertikal di tengah */
+  padding: 6px 10px;                               /* Spasi dalam atas-bawah 6px, kiri-kanan 10px */
+  background-color: var(--background-light);       /* Warna latar bahan (abu muda) */
+  border-radius: var(--border-radius);             /* Sudut elemen bahan dibulatkan */
+  font-size: 0.9rem;                               /* Ukuran teks bahan */
 }
+
 
 .ingredients-list li i {
-  color: var(--secondary);
-  margin-right: 8px;
+  color: var(--secondary);         /* Warna ikon centang (hijau) */
+  margin-right: 8px;               /* Jarak antara ikon dan teks bahan */
 }
+
 
 .youtube-link {
-  display: inline-block;
-  background-color: #ff0000;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: 600;
-  margin-top: 1rem;
-  font-size: 0.9rem;
+  display: inline-block;        /* Agar bisa diberi padding dan margin */
+  background-color: #ff0000;    /* Warna merah khas YouTube */
+  color: white;                 /* Warna teks putih */
+  padding: 8px 16px;            /* Spasi dalam atas-bawah 8px, kiri-kanan 16px */
+  border-radius: 4px;           /* Membulatkan sudut tombol link */
+  text-decoration: none;        /* Hilangkan garis bawah link */
+  font-weight: 600;             /* Buat teks tebal */
+  margin-top: 1rem;             /* Jarak atas dari elemen sebelumnya */
+  font-size: 0.9rem;            /* Ukuran teks sedang */
 }
+
 
 .youtube-link i {
-  margin-right: 8px;
+  margin-right: 8px;           /* Jarak antara ikon YouTube dan teks link */
 }
+
 
 #error-container {
-  background-color: rgba(255, 126, 95, 0.1);
-  border: 1px solid var(--primary);
-  color: var(--primary-dark);
-  padding: 1rem;
-  border-radius: var(--border-radius);
-  text-align: center;
-  margin-bottom: 1.5rem;
+  background-color: rgba(255, 126, 95, 0.1); /* Latar belakang merah muda transparan */
+  border: 1px solid var(--primary);          /* Garis luar warna utama */
+  color: var(--primary-dark);                /* Warna teks error lebih gelap */
+  padding: 1rem;                             /* Spasi dalam */
+  border-radius: var(--border-radius);       /* Sudut elemen membulat */
+  text-align: center;                        /* Teks error ditengah */
+  margin-bottom: 1.5rem;                     /* Jarak bawah dari elemen lainnya */
 }
+
 
 .api-link {
-  text-align: center;
-  padding-bottom: 1.5rem;
-  color: var(--text-dark);
-  opacity: 0.7;
-  font-size: 0.9rem;
+  text-align: center;         /* Tengahkan teks link API */
+  padding-bottom: 1.5rem;     /* Jarak bawah link dari elemen di bawahnya */
+  color: var(--text-dark);    /* Warna teks abu tua */
+  opacity: 0.7;               /* Teks dibuat sedikit transparan */
+  font-size: 0.9rem;          /* Ukuran teks kecil */
 }
+
 
 .api-link a {
-  color: var(--primary);
-  text-decoration: none;
+  color: var(--primary);      /* Warna link sama dengan warna utama */
+  text-decoration: none;      /* Hilangkan garis bawah */
 }
 
+
 .hidden {
-  display: none;
+  display: none;              /* Sembunyikan elemen dari tampilan */
 }
+
 
 
 /* Sidebar Styling */
 .sidebar {
-  position: fixed;
+  position: fixed;                   /* Sidebar tetap di posisi saat halaman di-scroll */
   top: 0;
   left: 0;
-  width: 220px;
-  height: 100vh;
-  background-color: var(--primary);
-  color: white;
-  padding: 2rem 1rem;
-  box-shadow: var(--shadow);
-  z-index: 999;
+  width: 220px;                      /* Lebar sidebar */
+  height: 100vh;                     /* Tinggi penuh dari atas sampai bawah layar */
+  background-color: var(--primary); /* Warna latar sidebar */
+  color: white;                      /* Warna teks di sidebar */
+  padding: 2rem 1rem;                /* Spasi dalam atas-bawah 2rem, kiri-kanan 1rem */
+  box-shadow: var(--shadow);        /* Bayangan untuk efek kedalaman */
+  z-index: 999;                      /* Buat sidebar berada di atas elemen lain */
 }
+
 
 .sidebar h2 {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-  color: white;
+  font-size: 1.5rem;       /* Ukuran teks untuk judul sidebar */
+  margin-bottom: 2rem;     /* Jarak bawah dari daftar menu */
+  color: white;            /* Warna teks putih */
 }
+
 
 .sidebar ul {
-  list-style: none;
+  list-style: none;        /* Hilangkan bullet/nomor pada list */
 }
+
 
 .sidebar ul li {
-  margin: 1rem 0;
+  margin: 1rem 0;          /* Jarak atas dan bawah antara tiap item */
 }
+
 
 .sidebar ul li a {
-  text-decoration: none;
-  color: var(--text-light);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: color 0.3s ease;
+  text-decoration: none;                   /* Hilangkan garis bawah pada link */
+  color: var(--text-light);                /* Warna teks terang (putih terang dari root variable) */
+  display: flex;                           /* Susun ikon dan teks secara horizontal */
+  align-items: center;                     /* Vertikal sejajarkan ikon dan teks di tengah */
+  gap: 10px;                               /* Jarak antara ikon dan teks */
+  transition: color 0.3s ease;             /* Efek transisi halus saat warna berubah */
 }
 
+
 .sidebar ul li a:hover {
-  color: #ffffff;
-  text-decoration: underline;
+  color: #ffffff;                          /* Saat diarahkan, teks jadi putih solid */
+  text-decoration: underline;             /* Tambahkan garis bawah saat hover */
 }
+
 
 /* Push main content to the right */
 .main-content {
-  margin-left: 220px;
-  padding: 2rem 1rem;
+  margin-left: 220px;                     /* Geser konten ke kanan agar tidak tertimpa sidebar */
+  padding: 2rem 1rem;                     /* Spasi dalam: atas-bawah 2rem, kiri-kanan 1rem */
 }
+
 
 .bookmark-btn {
-  background-color: #ffcc00;
-  border: none;
-  color: #000;
-  padding: 6px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 8px;
-  font-size: 0.9rem;
+  background-color: #ffcc00;              /* Warna kuning terang (seperti bintang bookmark) */
+  border: none;                           /* Hilangkan garis tepi */
+  color: #000;                            /* Warna teks hitam */
+  padding: 6px 10px;                      /* Spasi dalam atas-bawah 6px, kiri-kanan 10px */
+  border-radius: 6px;                     /* Sudut tombol dibulatkan */
+  cursor: pointer;                        /* Ubah kursor menjadi tangan saat diarahkan */
+  margin-top: 8px;                        /* Jarak dari elemen atasnya */
+  font-size: 0.9rem;                      /* Ukuran teks sedikit lebih kecil dari normal */
 }
+
 
 .bookmark-btn:hover {
-  background-color: #ffdb4d;
+  background-color: #ffdb4d;              /* Saat diarahkan, warna menjadi lebih terang (kuning pucat) */
 }
+
 .bookmark-btn i {
-  margin-right: 5px;
+  margin-right: 5px;                      /* Jarak antara ikon dan teks tombol */
 }
+
 .bookmark-btn:focus {
-  outline: none;
+  outline: none;                          /* Hilangkan garis fokus bawaan browser */
 }
+
 .bookmark-btn:active {
-  transform: scale(0.98);
+  transform: scale(0.98);                 /* Kecilkan sedikit tombol sebagai feedback visual */
 }
+
 .bookmark-btn:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+  background-color: #ccc;                 /* Ganti latar belakang jadi abu-abu */
+  cursor: not-allowed;                    /* Ubah kursor menjadi simbol 'tidak diperbolehkan' */
 }
 .bookmark-btn:disabled:hover {
-  background-color: #ccc;
+  background-color: #ccc;                 /* Tidak berubah saat hover */
 }
 .bookmark-btn:disabled:active {
-  transform: none;
+  transform: none;                        /* Tidak bergerak saat diklik */
 }
 .bookmark-btn:disabled:focus {
-  outline: none;
+  outline: none;                          /* Tidak ada garis fokus */
 }
 .bookmark-btn:disabled i {
-  color: #999;
+  color: #999;                            /* Warna ikon menjadi abu-abu */
 }
+
 .bookmark-btn i.active {
-  color: #ffcc00;
+  color: #ffcc00;                         /* Warna ikon bintang aktif (kuning) */
 }
+
 .bookmark-btn i.inactive {
-  color: #999;
+  color: #999;                            /* Warna ikon bintang nonaktif (abu-abu) */
 }
+
 .bookmark-btn i:hover {
-  color: #ffdb4d;
+  color: #ffdb4d;                         /* Saat diarahkan, warnanya sedikit lebih terang */
 }
 .bookmark-btn i:active {
-  transform: scale(0.98);
+  transform: scale(0.98);                 /* Kecilkan saat diklik sebagai efek klik */
 }
 .bookmark-btn i:focus {
-  outline: none;
+  outline: none;                          /* Hilangkan outline saat fokus */
 }
+
 .bookmark-btn i:disabled {
-  color: #ccc;
+  color: #ccc;                            /* Warna ikon jadi abu-abu */
 }
 .bookmark-btn i:disabled:hover {
-  color: #ccc;
+  color: #ccc;                            /* Tetap abu-abu saat diarahkan */
 }
 .bookmark-btn i:disabled:active {
-  transform: none;
+  transform: none;                        /* Tidak bergeser saat diklik */
 }
 .bookmark-btn i:disabled:focus {
-  outline: none;
+  outline: none;                          /* Hilangkan garis fokus */
 }
 .bookmark-btn i:disabled.active {
-  color: #ffcc00;
+  color: #ffcc00;                         /* Meski disabled, ikon tetap kuning jika aktif */
 }
 .bookmark-btn i:disabled.inactive {
-  color: #999;
+  color: #999;                            /* Meski disabled, ikon tetap abu-abu jika nonaktif */
 }
 .bookmark-btn i:disabled:hover {
-  color: #ccc;
+  color: #ccc;                            /* Hover tidak mempengaruhi warna */
 }
 .bookmark-btn i:disabled:active {
-  transform: none;
-} 
+  transform: none;                        /* Tidak memberi efek klik */
+}
+
 
 .favorite-btn {
-  margin-top: 1rem;
-  background-color: #ffcc00;
-  border: none;
-  padding: 0.5rem 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 5px;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+  margin-top: 1rem;               /* Jarak atas 1rem dari elemen sebelumnya */
+  background-color: #ffcc00;      /* Warna latar kuning (menarik perhatian seperti bookmark) */
+  border: none;                   /* Hilangkan garis tepi */
+  padding: 0.5rem 1rem;           /* Spasi dalam: atas-bawah 0.5rem, kiri-kanan 1rem */
+  font-weight: bold;             /* Teks ditebalkan agar lebih menonjol */
+  cursor: pointer;               /* Ubah kursor jadi tangan saat diarahkan */
+  border-radius: 5px;            /* Sudut tombol dibulatkan sedikit */
+  display: inline-flex;          /* Gunakan flexbox untuk ikon dan teks dalam satu baris */
+  align-items: center;           /* Vertikal: sejajarkan ikon dan teks ke tengah */
+  gap: 0.5rem;                   /* Jarak antara ikon dan teks */
 }
+
 
 .favorite-btn i {
-  color: #fff;
+  color: #fff;                   /* Warna ikon putih agar kontras dengan latar kuning */
 }
 
+
 .meal-details-content {
-  overflow-y: auto;
-  max-height: 90vh; /* or remove height limit */
-  padding-bottom: 2rem;
+  overflow-y: auto;              /* Jika konten lebih tinggi dari batas, tambahkan scroll vertikal */
+  max-height: 90vh;              /* Tinggi maksimum adalah 90% dari tinggi layar */
+  padding-bottom: 2rem;          /* Tambahkan spasi bawah agar tidak menempel dengan batas bawah */
 }

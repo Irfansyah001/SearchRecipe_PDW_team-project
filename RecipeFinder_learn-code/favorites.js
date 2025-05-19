@@ -1,19 +1,23 @@
+// Jalankan kode setelah seluruh konten HTML dimuat
 document.addEventListener("DOMContentLoaded", () => {
-  const container = document.getElementById("favorites-container");
-  const mealDetails = document.getElementById("meal-details");
-  const mealDetailsContent = document.querySelector(".meal-details-content");
-  const backBtn = document.getElementById("back-btn");
+  const container = document.getElementById("favorites-container"); // Tempat menampilkan resep favorit
+  const mealDetails = document.getElementById("meal-details"); // Kontainer detail resep
+  const mealDetailsContent = document.querySelector(".meal-details-content"); // Isi dari detail resep
+  const backBtn = document.getElementById("back-btn"); // Tombol untuk kembali ke daftar favorit
 
-  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || []; 
+  // Ambil data favorit dari localStorage dan ubah menjadi array (jika kosong, jadikan array kosong)
 
   if (favorites.length === 0) {
+    // Jika belum ada resep disimpan
     container.innerHTML = `<p style="padding: 1rem;">You have no saved recipes yet.</p>`;
-    return;
+    return; // Keluar dari fungsi
   }
 
-  container.innerHTML = ""; // clear container before appending
+  container.innerHTML = ""; // Bersihkan isi kontainer sebelum ditambahkan ulang
 
   favorites.forEach((meal) => {
+    // Tampilkan setiap resep favorit sebagai elemen HTML
     container.innerHTML += `
       <div class="meal" data-meal-id="${meal.idMeal}">
         <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
@@ -26,44 +30,47 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   });
 
-  // Add event listeners to all unsave buttons
+  // Tambahkan event listener ke setiap tombol unsave
   document.querySelectorAll(".unsave-btn").forEach(btn => {
     btn.addEventListener("click", (e) => {
-      e.stopPropagation(); // Prevent triggering the meal block click event
+      e.stopPropagation(); // Mencegah klik ke elemen resep agar tidak membuka detail
 
-      const mealDiv = e.target.closest(".meal");
-      const mealId = mealDiv.dataset.mealId;
+      const mealDiv = e.target.closest(".meal"); // Temukan elemen resep yang diklik
+      const mealId = mealDiv.dataset.mealId; // Ambil ID resep
 
-      // Remove meal from favorites array and update localStorage
+      // Hapus resep dari array favorites
       favorites = favorites.filter(meal => meal.idMeal !== mealId);
+
+      // Simpan ulang ke localStorage setelah dihapus
       localStorage.setItem("favorites", JSON.stringify(favorites));
 
-      // Remove meal element from DOM
+      // Hapus elemen dari tampilan
       mealDiv.remove();
 
-      // Show message if no favorites left
+      // Jika semua favorit dihapus, tampilkan pesan
       if (favorites.length === 0) {
         container.innerHTML = `<p style="padding: 1rem;">You have no saved recipes yet.</p>`;
       }
     });
   });
 
-  // Add event listeners to each whole meal block for showing details
+  // Tambahkan event listener untuk klik pada resep (untuk membuka detail)
   document.querySelectorAll(".meal").forEach(mealDiv => {
     mealDiv.addEventListener("click", async (e) => {
-      // Ignore clicks on the unsave button inside the meal block
+      // Abaikan klik jika yang diklik adalah tombol Unsave
       if (e.target.closest(".unsave-btn")) return;
 
-      const mealId = mealDiv.dataset.mealId;
+      const mealId = mealDiv.dataset.mealId; // Ambil ID resep
 
       try {
         const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`);
         const data = await response.json();
 
         if (data.meals && data.meals[0]) {
-          const meal = data.meals[0];
+          const meal = data.meals[0]; // Ambil objek resep dari API
           const ingredients = [];
 
+          // Ambil semua bahan dan takarannya
           for (let i = 1; i <= 20; i++) {
             if (meal[`strIngredient${i}`] && meal[`strIngredient${i}`].trim() !== "") {
               ingredients.push({
@@ -73,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
           }
 
+          // Tampilkan konten detail resep
           mealDetailsContent.innerHTML = `
             <img src="${meal.strMealThumb}" alt="${meal.strMeal}" class="meal-details-img">
             <h2 class="meal-details-title">${meal.strMeal}</h2>
@@ -102,19 +110,22 @@ document.addEventListener("DOMContentLoaded", () => {
             }
           `;
 
+          // Tampilkan kontainer detail resep, dan sembunyikan daftar resep
           mealDetails.classList.remove("hidden");
           container.classList.add("hidden");
+
+          // Scroll ke tampilan detail dengan smooth
           mealDetails.scrollIntoView({ behavior: "smooth" });
         }
       } catch (error) {
-        alert("Could not load recipe details. Please try again later.");
+        alert("Could not load recipe details. Please try again later."); // Jika fetch gagal
       }
     });
   });
 
-  // Back button logic
+  // Fungsi tombol kembali untuk menutup detail dan menampilkan ulang daftar
   backBtn.addEventListener("click", () => {
-    mealDetails.classList.add("hidden");
-    container.classList.remove("hidden");
+    mealDetails.classList.add("hidden"); // Sembunyikan detail
+    container.classList.remove("hidden"); // Tampilkan ulang daftar favorit
   });
 });

@@ -1,56 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Recipe Finder App</title>
-  <link rel="stylesheet" href="style.css" />
+<!DOCTYPE html> <!-- Menentukan tipe dokumen sebagai HTML5 -->
+<html lang="en"> <!-- Awal dokumen HTML, dengan bahasa Inggris -->
+<head> <!-- Bagian kepala HTML yang tidak ditampilkan langsung di halaman -->
+  <meta charset="UTF-8" /> <!-- Menentukan karakter encoding -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Membuat tampilan responsif di perangkat -->
+  <title>Recipe Finder App</title> <!-- Judul tab browser -->
+
+  <link rel="stylesheet" href="style.css" /> <!-- Menghubungkan file CSS eksternal -->
+
+  <!-- Menghubungkan library Font Awesome untuk ikon -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
 </head>
-<body>
+
+<body> <!-- Bagian utama halaman yang akan terlihat oleh pengguna -->
+
+  <!-- Sidebar navigasi di sisi kiri layar -->
   <div class="sidebar">
-    <h2><i class="fas fa-utensils"></i> RecipeFinder</h2>
-    <ul>
-      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-      <li><a href="favorites.html"><i class="fas fa-heart"></i> Favorites</a></li>
-      <li><a href="https://github.com/Irfansyah001/SearchRecipe_PDW_team-project"><i class="fas fa-info-circle"></i> About</a></li>
+    <h2><i class="fas fa-utensils"></i> RecipeFinder</h2> <!-- Judul dengan ikon sendok-garpu -->
+
+    <ul> <!-- Daftar menu navigasi -->
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li> <!-- Link ke halaman utama -->
+      <li><a href="favorites.html"><i class="fas fa-heart"></i> Favorites</a></li> <!-- Link ke halaman favorit -->
+      <li><a href="https://github.com/Irfansyah001/SearchRecipe_PDW_team-project"><i class="fas fa-info-circle"></i> About</a></li> <!-- Link ke halaman GitHub proyek -->
     </ul>
   </div>
 
+  <!-- Konten utama halaman -->
   <div class="main-content">
-    <header>
-      <h1>Welcome to Recipe Finder</h1>
-      <p>Find delicious recipes from around the world</p>
+    <header> <!-- Bagian header / judul halaman -->
+      <h1>Welcome to Recipe Finder</h1> <!-- Judul utama halaman -->
+      <p>Find delicious recipes from around the world</p> <!-- Subjudul penjelas -->
     </header>
 
+    <!-- Sumber data API yang digunakan aplikasi -->
     <p class="api-link">
-      Data from <a href="https://www.themealdb.com/api.php">TheMealDB 🧑‍🍳</a>
+      Data from <a href="https://www.themealdb.com/api.php">TheMealDB 🧑‍🍳</a> <!-- Link ke dokumentasi API yang digunakan -->
     </p>
 
+    <!-- Form pencarian resep -->
     <div class="search-container">
-      <input type="text" id="search-input" placeholder="Search for meals or keywords" />
-      <button id="search-btn">Search</button>
+      <input type="text" id="search-input" placeholder="Search for meals or keywords" /> <!-- Input keyword pencarian -->
+      <button id="search-btn">Search</button> <!-- Tombol untuk mulai pencarian -->
     </div>
 
+    <!-- Tempat munculnya pesan error jika tidak ada hasil pencarian -->
     <div id="error-container" class="hidden">
-      <p>No meals found. Try another search term!</p>
+      <p>No meals found. Try another search term!</p> <!-- Pesan error default -->
     </div>
 
-    <div id="result-heading"></div>
-    <div id="meals" class="meals-container"></div>
+    <!-- Tempat menampilkan hasil pencarian -->
+    <div id="result-heading"></div> <!-- Judul hasil pencarian akan muncul di sini -->
 
+    <div id="meals" class="meals-container"></div> <!-- Tempat menampilkan daftar resep yang ditemukan -->
+
+    <!-- Bagian untuk menampilkan detail resep jika salah satu resep diklik -->
     <div id="meal-details" class="hidden">
-      <button id="back-btn"><i class="fas fa-arrow-left"></i> Back to recipes</button>
-      <div class="meal-details-content"></div>
+      <button id="back-btn"><i class="fas fa-arrow-left"></i> Back to recipes</button> <!-- Tombol kembali -->
+      <div class="meal-details-content"></div> <!-- Konten detail resep akan dimasukkan secara dinamis -->
     </div>
   </div>
 
+  <!-- Menghubungkan file JavaScript utama -->
   <script src="script.js"></script>
 </body>
 </html>
